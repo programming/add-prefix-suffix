@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Prefix/Suffix</title>
+</head>
+<body>
+<h1>Add Prefix/Suffix</h1>
+<p>Prefix: <input type="text" id="prefix"> &nbsp;&nbsp;Suffix: <input type="text" id="suffix"></p>
+<p>Input</p>
+<p><textarea cols="80" rows="10" onclick="this.select()" id="inputText" placeholder="Paste your list here, items separated by line breaks"></textarea></p>
+<p>Output</p>
+<p><textarea cols="80" rows="10" onclick="this.select()" style="background-color: #eee" id="outputText" readonly></textarea></p>
+<p><button onclick="addPrefixSuffix()">Process</button> <button onclick="clearText()">Clear</button></p>
+<script>
+function addPrefixSuffix() {
+    var px = document.getElementById('prefix').value;
+    var sx = document.getElementById('suffix').value;
+    var txt = document.getElementById('inputText').value;
+    txt = txt.replace(/\r/g, '');
+    txt = txt.split(/\n/);
+    var txtlength = txt.length;
+    var txtarr = new Array();
+    for (var x = 0; x < txtlength; x++) {
+        txtarr[x] = px + txt[x] + sx;
+    }
+    document.getElementById('outputText').value = txtarr.join('\n');
+}
+
+function clearText() {
+	document.getElementById('inputText').value = '';
+	document.getElementById('outputText').value = '';
+    document.getElementById('prefix').value = '';
+    document.getElementById('suffix').value = '';
+}
+</script>
+</body>
+</html>
